@@ -1,3 +1,4 @@
+import 'package:first_app/screens/home_screen.dart';
 import 'package:first_app/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,12 @@ class SignInScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4CAF50),
                     foregroundColor: Colors.white,
