@@ -1,3 +1,4 @@
+import 'package:first_app/screens/checkout_screen.dart';
 import 'package:first_app/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -129,7 +130,14 @@ class _CartScreenState extends State<CartScreen> {
         width: double.infinity,
         height: 56,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CheckoutScreen(totalPrice: _totalPrice),
+              ),
+            );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF4CBB87),
             foregroundColor: Colors.white,

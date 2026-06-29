@@ -38,11 +38,14 @@ class ProductCard extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.contain,
               errorBuilder: (_, __, ___) => Container(
-                height: 90,
-                color: Colors.grey.shade100,
-                child: const Icon(
-                  Icons.image_not_supported_outlined,
-                  color: Colors.grey,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  Icons.image_outlined,
+                  size: 48,
+                  color: Colors.grey.shade300,
                 ),
               ),
             ),

@@ -1,4 +1,4 @@
-import 'package:first_app/widgets/product_widget.dart';
+import 'package:first_app/screens/product_detailes.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,13 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Map<String, dynamic>> _exclusiveOffers = [
     {
-      'image': 'assets/images/bananas.png',
+      'image': 'assets/images/pngfuel 1.png',
       'name': 'Organic Bananas',
       'subtitle': '7pcs, Price',
       'price': 4.99,
     },
     {
-      'image': 'assets/images/red_apple.png',
+      'image': 'assets/images/pngfuel 6-1.png',
       'name': 'Red Apple',
       'subtitle': '1kg, Price',
       'price': 4.99,
@@ -29,13 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Map<String, dynamic>> _bestSelling = [
     {
-      'image': 'assets/images/bell_pepper.png',
+      'image': 'assets/images/pngfuel 9.png',
       'name': 'Bell Pepper Red',
       'subtitle': '1kg, Price',
       'price': 4.99,
     },
     {
-      'image': 'assets/images/ginger.png',
+      'image': 'assets/images/pngfuel 6.png',
       'name': 'Ginger',
       'subtitle': '250g, Price',
       'price': 4.99,
@@ -44,13 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Map<String, dynamic>> _groceries = [
     {
-      'image': 'assets/images/beef_bone.png',
+      'image': 'assets/images/pngfuel 1.png',
       'name': 'Beef Bone',
       'subtitle': '1kg, Price',
       'price': 4.99,
     },
     {
-      'image': 'assets/images/broiler_chicken.png',
+      'image': 'assets/images/pngfuel 6-1.png',
       'name': 'Broiler Chicken',
       'subtitle': '1kg, Price',
       'price': 4.99,
@@ -99,17 +99,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildLocationHeader() {
     return Column(
       children: [
-        const Icon(Icons.eco, color: Colors.orange, size: 28),
-        const SizedBox(height: 4),
+        Image.asset('assets/images/logo.png', height: 50),
+        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Icon(Icons.location_on, color: Colors.black, size: 18),
             SizedBox(width: 4),
             Text(
-              'Dhaka, Banassre',
+              'Dhaka, Banasree',
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
             ),
+            Icon(Icons.keyboard_arrow_down),
           ],
         ),
       ],
@@ -145,30 +146,47 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 4),
+                clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFBF6EF),
                   borderRadius: BorderRadius.circular(16),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/Mask Group.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                padding: const EdgeInsets.all(16),
-                alignment: Alignment.center,
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Row(
                   children: [
-                    Text(
-                      'Fresh Vegetables',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                    const SizedBox(width: 16),
+                    Image.asset(
+                      'assets/images/2771.png',
+                      height: 110,
+                      width: 110,
+                      fit: BoxFit.contain,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Fresh Vegetables',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            'Get Up To 40% OFF',
+                            style: TextStyle(
+                              color: Color(0xFF4CBB87),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Get Up To 40% OFF',
-                      style: TextStyle(
-                        color: Color(0xFF4CBB87),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    const SizedBox(width: 16),
                   ],
                 ),
               );
@@ -218,21 +236,83 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHorizontalProducts(List<Map<String, dynamic>> products) {
     return SizedBox(
-      height: 260,
+      height: 250,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: products.length,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final p = products[index];
-          return ProductCard(
-            imagePath: p['image'],
-            name: p['name'],
-            subtitle: p['subtitle'],
-            price: p['price'],
-            onAdd: () {},
-          );
+          return _buildProductCard(p);
         },
+      ),
+    );
+  }
+
+  Widget _buildProductCard(Map<String, dynamic> p) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(
+              imagePath: p['image'],
+              name: p['name'],
+              subtitle: p['subtitle'],
+              price: p['price'],
+            ),
+          ),
+        );
+      },
+      child: Container(
+        width: 160,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.grey.shade200),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.asset(p['image'], height: 90, fit: BoxFit.contain),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              p['name'],
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              p['subtitle'],
+              style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '\$${p['price']}',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF53B175),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.add, color: Colors.white, size: 18),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -240,22 +320,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildCategoryChips() {
     final categories = ['Pulses', 'Rice', 'Spices', 'Oil'];
     return SizedBox(
-      height: 60,
+      height: 50,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           return Container(
-            width: 140,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
               color: index.isEven
                   ? const Color(0xFFFBE9D5)
                   : const Color(0xFFE3F3E8),
               borderRadius: BorderRadius.circular(14),
             ),
-            alignment: Alignment.centerLeft,
             child: Text(
               categories[index],
               style: const TextStyle(fontWeight: FontWeight.w600),
@@ -279,13 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       itemBuilder: (context, index) {
         final p = _groceries[index];
-        return ProductCard(
-          imagePath: p['image'],
-          name: p['name'],
-          subtitle: p['subtitle'],
-          price: p['price'],
-          onAdd: () {},
-        );
+        return _buildProductCard(p);
       },
     );
   }

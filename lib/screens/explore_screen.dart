@@ -12,32 +12,32 @@ class _ExploreScreenState extends State<ExploreScreen> {
   final List<Map<String, dynamic>> _categories = [
     {
       'title': 'Fresh Fruits\n& Vegetable',
-      'image': 'assets/images/fruits_veg.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFE3F3E8),
     },
     {
       'title': 'Cooking Oil\n& Ghee',
-      'image': 'assets/images/cooking_oil.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFFBE9D5),
     },
     {
       'title': 'Meat & Fish',
-      'image': 'assets/images/meat_fish.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFFAE0E0),
     },
     {
       'title': 'Bakery & Snacks',
-      'image': 'assets/images/bakery.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFF0E6FA),
     },
     {
       'title': 'Dairy & Eggs',
-      'image': 'assets/images/dairy.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFFBF3D2),
     },
     {
       'title': 'Beverages',
-      'image': 'assets/images/beverages.png',
+      'image': 'assets/assets/images/tree-top-juice-apple-grape-64oz 1.png',
       'color': const Color(0xFFD9EEF7),
     },
   ];
